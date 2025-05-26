@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timmyotoole</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <p><a href="../index.html">← Back to Course Catalog</a></p>
+
+        <!-- Header Area -->
+        <div class="course-header">
+             <span class="category-tag">Category Placeholder</span> <!-- Add category data if available -->
+            <h1>timmyotoole</h1>
+            <p class="course-description">Description placeholder based on folder name</p> <!-- Add description data if available -->
+            <div class="course-stats">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-5 w-5 mr-2 text-primary"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Duration Placeholder</span> <!-- Add duration data if available -->
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers h-5 w-5 mr-2 text-primary"><path d="m12 18-6-6-4 4 10 10 10-10-4-4-6 6"/><path d="m12 18v4"/><path d="m2 12 10 10"/><path d="M12 18 22 8"/><path d="M6 6 10 2l10 10"/></svg> 0 Modules</span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap h-5 w-5 mr-2 text-primary"><path d="M13 2v10h6l-7 10v-10H5z"/></svg> Difficulty Placeholder</span> <!-- Add difficulty data if available -->
+            </div>
+            <button>Start Learning</button>
+        </div>
+
+        <!-- Course Body: Tabs Navigation -->
+        <!-- Added relative positioning to tabs-nav for potential dropdown positioning -->
+        <div class="course-tabs-nav" style="position: relative;">
+             <!-- Links use data attributes for JS handling and #hashes for history -->
+             <a href="#overview" class="tab-link active" data-view="overview">Overview</a>
+             <!-- Course Content tab now acts as a dropdown toggle -->
+             <a href="#course-content" class="tab-link" data-view="course-content-toggle">Course Content</a>
+             <a href="#discussion" class="tab-link disabled" data-view="discussion">Discussion (Static)</a>
+        </div>
+        <!-- The dropdown menu will be dynamically created and appended near the tabs nav -->
+
+
+        <!-- Course Body: Content Area (Two-Column Layout) -->
+        <!-- This grid structure is always present on course pages -->
+        <div class="course-body-grid">
+            <div class="main-content-column">
+                 <!-- Content will be loaded here by JS -->
+                 <!-- Initial content is Overview (handled by JS on load) -->
+                 <!-- The 'card main-content-card' is now part of the fragment HTML itself -->
+            </div>
+            <div class="sidebar-column">
+                 <!-- Sidebar content (only for overview) will be loaded here by JS -->
+            </div>
+        </div>
+
+         <!-- Hidden container for content fragments and data -->
+         <!-- Store fragments and raw data as JSON string for easier parsing in JS -->
+        <script id="course-fragments" type="application/json">
+        {
+  "overview": "\n        <div class=\"card main-content-card\"> <!-- Added main-content-card class -->\n            <h2>About This Course</h2>\n            <div class=\"markdown-content\">\n                <p>No course outline available.</p>\n            </div>\n            <h2 class=\"module-list-heading\">Course Content</h2> <!-- Add heading for module list -->\n            <p>No modules found for this course.</p> <!-- Include the module list for Overview -->\n        </div>\n    ",
+  "modules": {},
+  "sidebarOverview": "\n         <div class=\"card course-progress-card\">\n             <h3>Course Progress</h3>\n             <!-- Progress bar placeholder -->\n             <div class=\"progress-bar-container\">\n                 <div class=\"progress-bar\" style=\"width: 0%;\"></div>\n             </div>\n             <p>0% Complete</p>\n             <p>0/0 modules completed</p>\n             <button>Continue Learning</button>\n         </div>\n         <div class=\"card\">\n             <h3>What You'll Learn</h3>\n             <div class=\"markdown-content text-center\"> <p>Coming Soon</p>\n </div> <!-- Placeholder Coming Soon -->\n         </div>\n         <div class=\"card\">\n             <h3>Requirements</h3>\n              <div class=\"markdown-content text-center\"> <p>Coming Soon</p>\n </div> <!-- Placeholder Coming Soon -->\n         </div>\n     ",
+  "rawModules": []
+}
+        </script>
+    
+    </div>
+    <script src="../script.js"></script> <!-- Include script based on flag -->
+</body>
+</html>

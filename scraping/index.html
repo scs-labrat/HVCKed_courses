@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraping</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <p><a href="../index.html">← Back to Course Catalog</a></p>
+
+        <!-- Header Area -->
+        <div class="course-header">
+             <span class="category-tag">Category Placeholder</span> <!-- Add category data if available -->
+            <h1>Scraping</h1>
+            <p class="course-description">Description placeholder based on folder name</p> <!-- Add description data if available -->
+            <div class="course-stats">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-5 w-5 mr-2 text-primary"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Duration Placeholder</span> <!-- Add duration data if available -->
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers h-5 w-5 mr-2 text-primary"><path d="m12 18-6-6-4 4 10 10 10-10-4-4-6 6"/><path d="m12 18v4"/><path d="m2 12 10 10"/><path d="M12 18 22 8"/><path d="M6 6 10 2l10 10"/></svg> 1 Modules</span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap h-5 w-5 mr-2 text-primary"><path d="M13 2v10h6l-7 10v-10H5z"/></svg> Difficulty Placeholder</span> <!-- Add difficulty data if available -->
+            </div>
+            <button>Start Learning</button>
+        </div>
+
+        <!-- Course Body: Tabs Navigation -->
+        <!-- Added relative positioning to tabs-nav for potential dropdown positioning -->
+        <div class="course-tabs-nav" style="position: relative;">
+             <!-- Links use data attributes for JS handling and #hashes for history -->
+             <a href="#overview" class="tab-link active" data-view="overview">Overview</a>
+             <!-- Course Content tab now acts as a dropdown toggle -->
+             <a href="#course-content" class="tab-link" data-view="course-content-toggle">Course Content</a>
+             <a href="#discussion" class="tab-link disabled" data-view="discussion">Discussion (Static)</a>
+        </div>
+        <!-- The dropdown menu will be dynamically created and appended near the tabs nav -->
+
+
+        <!-- Course Body: Content Area (Two-Column Layout) -->
+        <!-- This grid structure is always present on course pages -->
+        <div class="course-body-grid">
+            <div class="main-content-column">
+                 <!-- Content will be loaded here by JS -->
+                 <!-- Initial content is Overview (handled by JS on load) -->
+                 <!-- The 'card main-content-card' is now part of the fragment HTML itself -->
+            </div>
+            <div class="sidebar-column">
+                 <!-- Sidebar content (only for overview) will be loaded here by JS -->
+            </div>
+        </div>
+
+         <!-- Hidden container for content fragments and data -->
+         <!-- Store fragments and raw data as JSON string for easier parsing in JS -->
+        <script id="course-fragments" type="application/json">
+        {
+  "overview": "\n        <div class=\"card main-content-card\"> <!-- Added main-content-card class -->\n            <h2>About This Course</h2>\n            <div class=\"markdown-content\">\n                <p>No course outline available.</p>\n            </div>\n            <h2 class=\"module-list-heading\">Course Content</h2> <!-- Add heading for module list -->\n            <ul class=\"module-list\">\n        <li class=\"module-item\">\n            <!-- Link uses data attributes for JS handling -->\n            <a href=\"#module-1\" data-view=\"module-1\" data-module-order=\"1\">\n                <div class=\"card module-card\">\n                    <div class=\"module-card-content\">\n                        <div class=\"module-title-area\">\n                           <h3>Module 1: module_1</h3>\n                           <!-- Add description if available -->\n                           <!-- <p class=\"module-description\">module_1 Overview</p> -->\n                        </div>\n                        <div class=\"module-meta\">\n                            <span class=\"module-duration\">30min</span>\n                            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-lock h-5 w-5 text-gray-500\"><rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/></svg> <!-- Lock Icon -->\n                        </div>\n                    </div>\n                </div>\n            </a>\n        </li>\n        </ul> <!-- Include the module list for Overview -->\n        </div>\n    ",
+  "modules": {
+    "module-1": "\n             <div class=\"card main-content-card\"> <!-- Added main-content-card class -->\n                <h1>Module 1: module_1</h1> <!-- Use module title here -->\n                <div class=\"markdown-content\">\n                    <p>Google<br>Search Input: input[name=&#39;q&#39;]</p>\n<p>Search Results Container: div.g</p>\n<p>Result Title: h3</p>\n<p>Result URL: cite (or span &gt; span:first-child for featured snippets)</p>\n<p>Result Description: div.IsZvec or div &gt; span:last-child &gt; span:first-child</p>\n<p>Bing<br>Search Input: input[name=&#39;q&#39;]</p>\n<p>Search Results Container: li.b_algo</p>\n<p>Result Title: h2 &gt; a</p>\n<p>Result URL: cite</p>\n<p>Result Description: div.b_caption &gt; p</p>\n<p>DuckDuckGo<br>Search Input: input#search_form_input</p>\n<p>Search Results Container: div.result</p>\n<p>Result Title: a.result__title</p>\n<p>Result URL: a.result__url</p>\n<p>Result Description: div.result__snippet</p>\n<p>Yandex<br>Search Input: input#text</p>\n<p>Search Results Container: li.serp-item</p>\n<p>Result Title: h2.organic__title &gt; a</p>\n<p>Result URL: div.organic__url &gt; a</p>\n<p>Result Description: div.text-container</p>\n<p>Yahoo (uses Bing results)<br>Search Input: input[name=&#39;p&#39;]</p>\n<p>Search Results Container: div.dd or div.algo</p>\n<p>Result Title: h3.title &gt; a</p>\n<p>Result URL: span &gt; span:first-child</p>\n<p>Result Description: div.compText</p>\n<p>Baidu (Chinese search engine)<br>Search Input: input#kw</p>\n<p>Search Results Container: div.result</p>\n<p>Result Title: h3.t &gt; a</p>\n<p>Result URL: span.c-showurl</p>\n<p>Result Description: div.c-abstract</p>\n<p>Ask.com<br>Search Input: input[name=&#39;q&#39;]</p>\n<p>Search Results Container: div.PartialSearchResults-item</p>\n<p>Result Title: a.PartialSearchResults-item-title</p>\n<p>Result URL: a.PartialSearchResults-item-url</p>\n<p>Result Description: p.PartialSearchResults-item-abstract</p>\n<p>Ecosia (uses Bing results)<br>Search Input: input[name=&#39;q&#39;]</p>\n<p>Search Results Container: article</p>\n<p>Result Title: h2</p>\n<p>Result URL: span.url</p>\n<p>Result Description: p.description</p>\n<p>Notes:<br>Dynamic Content: Some search engines load results dynamically (e.g., via JavaScript), so static scraping may not work.</p>\n<p>Class Names: Class names/structures may change after updates. Always verify using browser dev tools.</p>\n<p>Legality: Check the search engine’s terms of service before scraping.</p>\n<p>Mobile vs. Desktop: Selectors may differ between mobile and desktop versions.</p>\n\n                </div>\n             </div>\n         "
+  },
+  "sidebarOverview": "\n         <div class=\"card course-progress-card\">\n             <h3>Course Progress</h3>\n             <!-- Progress bar placeholder -->\n             <div class=\"progress-bar-container\">\n                 <div class=\"progress-bar\" style=\"width: 0%;\"></div>\n             </div>\n             <p>0% Complete</p>\n             <p>0/1 modules completed</p>\n             <button>Continue Learning</button>\n         </div>\n         <div class=\"card\">\n             <h3>What You'll Learn</h3>\n             <div class=\"markdown-content text-center\"> <p>Coming Soon</p>\n </div> <!-- Placeholder Coming Soon -->\n         </div>\n         <div class=\"card\">\n             <h3>Requirements</h3>\n              <div class=\"markdown-content text-center\"> <p>Coming Soon</p>\n </div> <!-- Placeholder Coming Soon -->\n         </div>\n     ",
+  "rawModules": [
+    {
+      "title": "module_1",
+      "description": "module_1 Overview",
+      "order": 1,
+      "content": "Google\r\nSearch Input: input[name='q']\r\n\r\nSearch Results Container: div.g\r\n\r\nResult Title: h3\r\n\r\nResult URL: cite (or span > span:first-child for featured snippets)\r\n\r\nResult Description: div.IsZvec or div > span:last-child > span:first-child\r\n\r\nBing\r\nSearch Input: input[name='q']\r\n\r\nSearch Results Container: li.b_algo\r\n\r\nResult Title: h2 > a\r\n\r\nResult URL: cite\r\n\r\nResult Description: div.b_caption > p\r\n\r\nDuckDuckGo\r\nSearch Input: input#search_form_input\r\n\r\nSearch Results Container: div.result\r\n\r\nResult Title: a.result__title\r\n\r\nResult URL: a.result__url\r\n\r\nResult Description: div.result__snippet\r\n\r\nYandex\r\nSearch Input: input#text\r\n\r\nSearch Results Container: li.serp-item\r\n\r\nResult Title: h2.organic__title > a\r\n\r\nResult URL: div.organic__url > a\r\n\r\nResult Description: div.text-container\r\n\r\nYahoo (uses Bing results)\r\nSearch Input: input[name='p']\r\n\r\nSearch Results Container: div.dd or div.algo\r\n\r\nResult Title: h3.title > a\r\n\r\nResult URL: span > span:first-child\r\n\r\nResult Description: div.compText\r\n\r\nBaidu (Chinese search engine)\r\nSearch Input: input#kw\r\n\r\nSearch Results Container: div.result\r\n\r\nResult Title: h3.t > a\r\n\r\nResult URL: span.c-showurl\r\n\r\nResult Description: div.c-abstract\r\n\r\nAsk.com\r\nSearch Input: input[name='q']\r\n\r\nSearch Results Container: div.PartialSearchResults-item\r\n\r\nResult Title: a.PartialSearchResults-item-title\r\n\r\nResult URL: a.PartialSearchResults-item-url\r\n\r\nResult Description: p.PartialSearchResults-item-abstract\r\n\r\nEcosia (uses Bing results)\r\nSearch Input: input[name='q']\r\n\r\nSearch Results Container: article\r\n\r\nResult Title: h2\r\n\r\nResult URL: span.url\r\n\r\nResult Description: p.description\r\n\r\nNotes:\r\nDynamic Content: Some search engines load results dynamically (e.g., via JavaScript), so static scraping may not work.\r\n\r\nClass Names: Class names/structures may change after updates. Always verify using browser dev tools.\r\n\r\nLegality: Check the search engine’s terms of service before scraping.\r\n\r\nMobile vs. Desktop: Selectors may differ between mobile and desktop versions."
+    }
+  ]
+}
+        </script>
+    
+    </div>
+    <script src="../script.js"></script> <!-- Include script based on flag -->
+</body>
+</html>

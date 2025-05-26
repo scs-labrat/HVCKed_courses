@@ -1,0 +1,762 @@
+:root {
+    /* Color Variables */
+    --primary-accent: #00ff00;
+    --secondary-accent: #00cc00;
+    --dark-bg: #1a1a1a;
+    --medium-bg: #2a2a2a;
+    --light-text: #e0e0e0;
+    --border-color: #404040;
+    --text-muted-foreground: #a0a0a0; /* Added muted text color */
+    --destructive: #ff4d4d; /* Added destructive color for potential use */
+    --outline-border: #606060; /* A specific color for the outline border if needed */
+
+
+    /* Effects */
+    --glow: 0 0 10px var(--primary-accent);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--dark-bg);
+    padding: 20px 40px;
+    border-radius: 8px;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-accent);
+    font-weight: 800; /* Apply to all headings */
+    text-shadow: var(--glow);
+    letter-spacing: -0.03em;
+    position: relative;
+    margin-top: 1.5em; /* Default top margin */
+    margin-bottom: 0.5em; /* Default bottom margin */
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 0.75em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid var(--border-color);
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+/* H3 Specific overrides */
+h3 {
+    font-size: 1.75rem;
+    color: var(--light-text); /* Use light text for slightly lower hierarchy */
+    font-weight: 700;
+    text-shadow: none; /* Remove glow from h3 */
+    /* Default margin can be overridden by parent classes like .card h3 */
+}
+
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+/* Interactive Elements */
+a {
+    color: var(--secondary-accent);
+    text-decoration: none;
+    position: relative;
+    transition: var(--transition);
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-accent);
+    transition: var(--transition);
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+/* Specific back links */
+p a {
+    font-size: 0.9em;
+    color: var(--text-muted-foreground);
+}
+p a:hover {
+    color: var(--light-text);
+}
+p a::after { /* Remove underline animation for back links */
+    display: none;
+}
+
+
+button {
+    background: linear-gradient(145deg, var(--secondary-accent), var(--primary-accent));
+    color: var(--dark-bg);
+    font-weight: 700;
+    padding: 0.75em 2em;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.2);
+    cursor: pointer; /* Added cursor pointer */
+    display: inline-block; /* Ensure padding/margin works */
+    margin-top: 1em; /* Add space above buttons */
+    text-align: center;
+    white-space: nowrap; /* Prevent text wrap inside button */
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 0, 0.3);
+}
+
+/* Enhanced Input Fields - Not used in this static site */
+input, textarea, select {
+    background: var(--medium-bg);
+    border: 2px solid var(--border-color);
+    transition: var(--transition);
+    padding: 0.75em;
+    font-size: 1rem;
+    color: var(--light-text);
+    border-radius: 4px;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary-accent);
+    box-shadow: var(--glow);
+    outline: none;
+}
+
+/* Advanced Code Blocks */
+pre {
+    background: linear-gradient(160deg, #1a1a1a 0%, #2a2a2a 100%);
+    border: 1px solid var(--border-color);
+    position: relative;
+    margin: 1.5em 0;
+    border-radius: 8px;
+    padding: 1.5em 1.5em 1.5em 3em; /* Adjust padding to make space for '>' */
+    overflow-x: auto;
+    color: #c0c0c0; /* Lighter color for code text */
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+pre::before {
+    content: '>';
+    position: absolute;
+    left: 1.5em; /* Position relative to new padding */
+    top: 1.5em;
+    color: var(--primary-accent);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    z-index: 1;
+}
+
+code {
+    display: block;
+    /* Padding handled by pre */
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Card Layouts */
+.card {
+    background: var(--medium-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+.card:hover {
+    border-color: var(--secondary-accent);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+}
+
+/* Lists (used for courses and modules) */
+.course-list, .module-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 2em; /* Add space above the lists */
+}
+
+.course-item, .module-item {
+     margin-bottom: 15px;
+     list-style-type: none; /* Remove default list item markers */
+}
+
+/* Link styling when wrapping a card */
+.course-item > a, .module-item > a {
+    display: block; /* Make the link fill the container */
+    text-decoration: none; /* Remove default underline */
+    color: inherit; /* Inherit text color from parent/card */
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.course-item > a::after, .module-item > a::after {
+    display: none; /* Remove the hover underline animation */
+}
+
+/* Override text color within the card link on hover */
+.course-item:hover .card h2,
+.course-item:hover .card h3, /* Added h3 for course catalog cards */
+.module-item:hover .card h3 {
+     color: var(--primary-accent);
+     transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.module-item:hover .module-meta {
+    color: var(--primary-accent);
+    transition: color 0.3s ease;
+}
+
+
+/* Markdown specific styling inside content blocks */
+.markdown-content {
+    margin-top: 1.5em;
+    /* Styles for markdown elements will be applied within this div */
+}
+
+/* Adjust markdown element spacing when inside a card */
+.card .markdown-content {
+    margin-top: 0; /* Remove top margin from the container itself if inside card */
+}
+.card .markdown-content > *:first-child {
+    margin-top: 0; /* Ensure no top margin on the very first element */
+}
+.card .markdown-content > *:last-child {
+    margin-bottom: 0; /* Ensure no bottom margin on the very last element */
+}
+
+
+.markdown-content p {
+    margin-bottom: 1em;
+}
+
+.markdown-content ul, .markdown-content ol {
+    margin-bottom: 1em;
+    padding-left: 20px;
+}
+
+.markdown-content li {
+    margin-bottom: 0.5em;
+}
+
+.markdown-content blockquote {
+    border-left: 4px solid var(--secondary-accent);
+    padding-left: 1em;
+    margin: 1.5em 0;
+    color: var(--text-muted-foreground);
+}
+
+.markdown-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.5em 0;
+}
+
+.markdown-content th, .markdown-content td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: left;
+}
+
+.markdown-content th {
+    background-color: var(--medium-bg);
+    color: var(--primary-accent);
+}
+
+
+/* Animations */
+@keyframes glow-pulse {
+    0%, 100% { text-shadow: 0 0 10px var(--primary-accent); }
+    50% { text-shadow: 0 0 20px var(--primary-accent), 0 0 30px var(--secondary-accent); }
+}
+
+.glow-animation {
+    animation: glow-pulse 2s infinite ease-in-out;
+}
+
+/* --- Specific Layout & Component Styling --- */
+
+/* Course Header Area */
+.course-header {
+    margin-bottom: 2em;
+    /* No changes needed here for basic header structure */
+}
+
+.course-catalog-header {
+    /* Specific styles for the header on the main index page */
+}
+
+.category-tag {
+    display: inline-block;
+    background-color: rgba(0, 255, 0, 0.1); /* Using primary-accent with alpha */
+    color: var(--primary-accent);
+    padding: 0.25em 0.75em;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.course-description {
+    color: var(--text-muted-foreground);
+    font-size: 1.1em;
+    margin-bottom: 1.5em;
+}
+
+.course-stats {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 1.5em; /* Space between stats */
+    margin-bottom: 1.5em;
+    font-size: 0.9em;
+    color: var(--text-muted-foreground); /* Muted color for stats */
+}
+.course-stats span {
+    display: inline-flex;
+    align-items: center;
+}
+.course-stats svg { /* Style the lucide icons */
+    color: var(--primary-accent);
+}
+
+
+/* Tabs-like Navigation */
+.course-tabs-nav {
+    display: flex;
+    flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+    gap: 1.5em; /* Space between tabs */
+    margin-bottom: 2em;
+    border-bottom: 2px solid var(--border-color);
+    /* position: relative; // Added in HTML for potential dropdown positioning */
+}
+
+.tab-link {
+    /* Styling to make tabs look like buttons */
+    display: inline-block;
+    background-color: transparent; /* Start transparent */
+    color: var(--text-muted-foreground);
+    font-weight: 600;
+    padding: 0.5em 1em; /* Button-like padding */
+    border-radius: 6px; /* Slightly rounded corners */
+    border: 1px solid transparent; /* Border for structure */
+    transition: var(--transition);
+    cursor: pointer;
+    text-decoration: none; /* Ensure no default underline */
+    white-space: nowrap; /* Prevent text wrap */
+}
+
+/* Remove default link ::after pseudo-element for tabs */
+.tab-link::after {
+    display: none;
+}
+
+/* Hover and Active states for tabs */
+.tab-link:hover:not(.disabled) {
+    color: var(--light-text);
+    background-color: rgba(0, 255, 0, 0.05); /* Subtle background on hover */
+    border-color: var(--primary-accent); /* Highlight border */
+}
+
+.tab-link.active {
+    color: var(--primary-accent);
+    background-color: rgba(0, 255, 0, 0.1); /* More prominent background for active */
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.3); /* Subtle glow/shadow */
+}
+
+.tab-link.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+
+/* Course Body Grid Layout (for course pages) */
+/* This grid will always have two columns for layout structure */
+.course-body-grid {
+    display: grid;
+    /* Define grid columns */
+    grid-template-columns: 2fr 1fr; /* 2/3 for main, 1/3 for sidebar */
+    gap: 2em; /* Space between columns */
+}
+
+/* Mobile layout: Single column */
+@media (max-width: 767px) {
+    .course-body-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 1em; /* Reduced gap on mobile */
+    }
+}
+
+.main-content-column {
+    /* Main content is always in the first grid column */
+    grid-column: 1;
+}
+
+.sidebar-column {
+    /* Sidebar is always in the second grid column */
+    grid-column: 2;
+}
+
+/* Hide sidebar column when its content is empty (handled by JS setting innerHTML = '') */
+.sidebar-column:empty {
+    display: none;
+}
+
+/* On desktop, when sidebar is empty, the main content column should span both */
+@media (min-width: 768px) {
+    .course-body-grid:not(.hide-sidebar) .main-content-column { /* Default: spans 1 (first) column */
+        grid-column: 1;
+    }
+     .course-body-grid.hide-sidebar .main-content-column { /* When sidebar is hidden */
+         grid-column: span 2; /* Span both columns */
+     }
+}
+
+/* On mobile, main content always spans 1 column (full width in 1fr grid) */
+@media (max-width: 767px) {
+    .main-content-column {
+        grid-column: 1; /* Always spans the single column */
+    }
+}
+
+
+/* Adjust card margin within columns */
+/* The dynamically loaded content is a card, so its margin applies directly */
+.main-content-column .card {
+     margin: 0; /* Remove default margin from the card when it's the main content */
+}
+.sidebar-column .card {
+     margin: 0 0 1.5rem 0; /* Margin between cards in the sidebar */
+}
+.sidebar-column .card:last-child {
+     margin-bottom: 0; /* No bottom margin on the last card in the sidebar */
+}
+
+
+/* Course Progress Card Specifics - These styles are applied to cards in the sidebar */
+.course-progress-card .progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: var(--dark-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.75em;
+}
+
+.course-progress-card .progress-bar {
+    height: 100%;
+    background-color: var(--primary-accent);
+    width: 0%; /* Controlled by data later */
+    transition: width 0.5s ease-in-out;
+    border-radius: 4px;
+}
+
+.course-progress-card p {
+    font-size: 0.9em;
+    color: var(--text-muted-foreground);
+    margin-bottom: 0.5em;
+}
+.course-progress-card p:last-of-type {
+    margin-bottom: 1.5em;
+}
+.course-progress-card button {
+    width: 100%;
+    padding: 1em;
+    margin-top: 0; /* Remove extra top margin from button inside this card */
+}
+
+
+/* Module List Styling (when appearing inside a card in the main column - i.e., Overview) */
+/* H2 heading specifically for the Module List title */
+.card .module-list-heading {
+    margin-top: 1.5em; /* Add top margin above the list heading */
+    margin-bottom: 1em; /* Space between heading and list */
+     color: var(--primary-accent); /* Ensure heading color is correct */
+     font-weight: 800; /* Ensure heading weight is correct */
+     text-shadow: var(--glow); /* Ensure glow */
+     letter-spacing: -0.03em;
+}
+
+/* Remove top margin if the heading is the first element in the card */
+.card > .module-list-heading:first-child {
+     margin-top: 0;
+}
+
+/* The module list itself is inside the card now */
+.card .module-list {
+     margin-top: 0; /* Remove default list top margin */
+}
+
+.module-item {
+     margin-bottom: 15px; /* Space between module cards */
+     list-style-type: none;
+}
+
+/* Specific styles for the module card (when it's a list item in Overview) */
+.module-card {
+    padding: 1.5rem; /* Slightly less padding for list items */
+    margin: 0; /* No margin here, margin is on the LI */
+}
+
+.module-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em; /* Space between title area and meta */
+}
+
+.module-title-area {
+    flex-grow: 1;
+}
+
+/* H3 style inside module cards */
+.module-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+    color: var(--light-text);
+    text-shadow: none;
+}
+
+.module-description {
+    font-size: 0.9em;
+    color: var(--text-muted-foreground);
+}
+
+.module-meta {
+    flex-shrink: 0; /* Prevent shrinking */
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 0.9em;
+    color: var(--text-muted-foreground);
+}
+
+.module-meta svg {
+    height: 1.2em; /* Adjust icon size */
+    width: 1.2em;
+    color: var(--text-muted-foreground);
+}
+
+
+/* --- Dropdown Styles --- */
+.module-dropdown {
+    /* Positioned absolutely via JS */
+    background-color: var(--medium-bg); /* Card-like background */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem 0; /* Padding inside the dropdown */
+    min-width: 200px; /* Minimum width */
+    max-width: 300px; /* Maximum width */
+    max-height: 300px; /* Max height before scrolling */
+    overflow-y: auto; /* Add scroll if content overflows */
+    z-index: 1000; /* Ensure it's above other content */
+    /* Initial visibility is handled by JS */
+}
+
+.dropdown-module-list {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Remove default list margins */
+}
+
+.dropdown-module-item {
+    list-style: none;
+    margin: 0; /* Remove default list item margins */
+}
+
+.module-dropdown a {
+    display: block; /* Make the link fill the list item */
+    padding: 0.75rem 1.5rem; /* Padding inside each link */
+    color: var(--light-text); /* Default link color */
+    text-decoration: none;
+    white-space: nowrap; /* Prevent text wrap in dropdown items */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    position: relative; /* For the ::after pseudo-element if needed */
+}
+
+/* Remove the default link underline animation from dropdown links */
+.module-dropdown a::after {
+    display: none;
+}
+
+.module-dropdown a:hover {
+    background-color: var(--dark-bg); /* Hover background */
+    color: var(--primary-accent); /* Hover text color */
+}
+
+.dropdown-message {
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-muted-foreground);
+    font-size: 0.9em;
+}
+
+
+/* Animations */
+@keyframes glow-pulse {
+    0%, 100% { text-shadow: 0 0 10px var(--primary-accent); }
+    50% { text-shadow: 0 0 20px var(--primary-accent), 0 0 30px var(--secondary-accent); }
+}
+
+.glow-animation {
+    animation: glow-pulse 2s infinite ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2.25rem;
+        padding-bottom: 0.25em;
+    }
+
+    /* Card padding/margin */
+    .card {
+        padding: 1rem; /* Reduced padding */
+        margin: 1em 0; /* Reduced margin */
+    }
+     /* Specific override for main content card */
+     .main-content-column .card {
+          margin: 0; /* No margin */
+     }
+
+     .course-list, .module-list {
+         margin-top: 1.5em; /* Reduced margin */
+     }
+     .course-item, .module-item {
+         margin-bottom: 10px; /* Reduced margin */
+     }
+
+
+    .course-header h1 {
+        margin-top: 0; /* Remove extra top margin on mobile */
+    }
+
+    .course-stats {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .course-tabs-nav {
+        gap: 0.75em;
+        margin-bottom: 1.5em;
+    }
+
+    .tab-link {
+        padding: 0.5em 0.75em; /* Adjusted padding for button tabs on mobile */
+    }
+
+    .module-card-content {
+        flex-direction: column; /* Stack module title and meta */
+        align-items: flex-start;
+        gap: 0.5em;
+    }
+
+    .module-meta {
+        width: 100%; /* Full width for meta */
+        justify-content: flex-end; /* Align meta to the right */
+    }
+
+    pre {
+        padding: 1em 1em 1em 2em; /* Reduced padding for code blocks */
+    }
+
+    pre::before {
+        left: 1em;
+        top: 1em;
+    }
+
+     .markdown-content pre {
+        margin: 1em 0; /* Reduced margin for code blocks */
+     }
+     .markdown-content table {
+        margin: 1em 0; /* Reduced margin for tables */
+     }
+     .markdown-content blockquote {
+         margin: 1em 0; /* Reduced margin for blockquotes */
+     }
+
+     .card:hover { /* Disable hover transform on touch devices */
+        transform: none;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Revert shadow */
+     }
+
+     /* Mobile specific adjustments for grid layout */
+     /* Sidebar column is always hidden on mobile */
+     .sidebar-column {
+        display: none;
+     }
+     /* Main content column always spans 1 column (full width) on mobile */
+     .main-content-column {
+          grid-column: span 1;
+     }
+
+     /* Adjust dropdown max-width on smaller screens if needed */
+     .module-dropdown {
+         max-width: 90%; /* Adjust max width to fit smaller screens */
+     }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.flex { display: flex; }
+.grid { display: grid; }
+
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-accent);
+}
